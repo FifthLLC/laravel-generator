@@ -1,0 +1,12 @@
+{
+    "name": "fifth/fifth",
+    "description": "The fifth packages.",
+    "authors": [
+        {
+            "name": "SurenAvagyanG",
+            "email": "suren@fifth-llc.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
