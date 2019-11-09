@@ -8,5 +8,10 @@
         }
     ],
     "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Fifth\\Generator\\": "api-generator/src"
+        }
+    },
     "require": {}
 }
