@@ -1,0 +1,24 @@
+<?php
+
+namespace DummyNamespace;
+
+use Fifth\Generator\Http\Requests\BaseRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Models\DummyClass;
+
+class IndexRequest extends BaseRequest
+{
+    public function authorizationRules()
+    {
+        return [
+            'default' => Auth::user()->can('viewAny', DummyClass::class)
+        ];
+    }
+
+    public function rules(): array
+    {
+        return [
+            //
+        ];
+    }
+}

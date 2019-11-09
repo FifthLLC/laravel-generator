@@ -1,0 +1,35 @@
+<?php
+
+namespace DummyNamespace;
+
+use Fifth\Generator\Http\Requests\DataPersistRequest;
+use Illuminate\Support\Facades\Auth;
+
+class DestroyRequest extends DataPersistRequest
+{
+    public function authorizationRules()
+    {
+        return [
+            'default' => Auth::user()->can('destroy', $this->dummyClass)
+        ];
+    }
+
+    public function rules(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public function persist(): self
+    {
+        $this->dummyClass->delete();
+
+        return $this;
+    }
+
+    protected function getMessage(): string
+    {
+        return "DummyClass successfully deleted.";
+    }
+}

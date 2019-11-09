@@ -1,0 +1,16 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Models\Fragments\DummyClass\Relations;
+use App\Models\Fragments\DummyClass\Scopes;
+use Fifth\Generator\Models\BaseModel;
+
+class DummyClass extends BaseModel
+{
+    use Relations, Scopes;
+
+    protected $fillable = [
+        //
+    ];
+}
