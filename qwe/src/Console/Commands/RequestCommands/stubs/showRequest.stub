@@ -1,0 +1,29 @@
+<?php
+
+namespace DummyNamespace;
+
+use Fifth\Generator\Http\Requests\BaseRequest;
+use App\Models\DummyClass;
+use Illuminate\Support\Facades\Auth;
+
+class ShowRequest extends BaseRequest
+{
+    public function authorizationRules()
+    {
+        return [
+            'default' => Auth::user()->can('view', $this->dummyClass)
+        ];
+    }
+
+    public function rules(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public function getDummyClass(): DummyClass
+    {
+        return $this->dummyClass;
+    }
+}

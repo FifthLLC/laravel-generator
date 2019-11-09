@@ -1,0 +1,16 @@
+<?php
+
+namespace DummyNamespace;
+
+use Fifth\Generator\Transformers\Transformer;
+use Illuminate\Database\Eloquent\Model;
+
+class DummyClassTransformer extends Transformer
+{
+    public function simpleTransform(Model $model): array
+    {
+        return [
+            'id'    => $model->id,
+        ];
+    }
+}

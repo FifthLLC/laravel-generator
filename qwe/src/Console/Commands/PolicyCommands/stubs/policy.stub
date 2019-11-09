@@ -1,0 +1,36 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Models\DummyClass;
+use App\Models\User;
+use Fifth\Generator\Http\BasePolicy;
+
+class DummyClassPolicy extends BasePolicy
+{
+    public function viewAny(User $user)
+    {
+        return true;
+    }
+
+    public function view(User $user, DummyClass $dummyClass)
+    {
+        return true;
+    }
+
+    public function store(User $user)
+    {
+        return true;
+    }
+
+    public function update(User $user, DummyClass $dummyClass)
+    {
+        return true;
+    }
+
+    public function delete(User $user, DummyClass $dummyClass)
+    {
+        return true;
+    }
+}
