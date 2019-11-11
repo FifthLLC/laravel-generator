@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class PolicyMakeCommand extends MainMakeCommand
 {
-    protected $name = 'make:policy11';
+    protected $name = 'fifth:policy';
 
     protected $type = 'Policy';
 

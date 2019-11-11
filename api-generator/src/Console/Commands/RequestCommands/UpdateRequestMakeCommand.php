@@ -6,7 +6,7 @@ use Fifth\Generator\Commands\MainMakeCommand;
 
 class UpdateRequestMakeCommand extends MainMakeCommand
 {
-    protected $name = 'make:updateRequest';
+    protected $name = 'fifth:updateRequest';
 
     protected $description = 'Make UpdateRequest for given Model';
 

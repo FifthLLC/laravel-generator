@@ -6,7 +6,7 @@ use Fifth\Generator\Commands\MainMakeCommand;
 
 class DataProviderMakeCommand extends MainMakeCommand
 {
-    protected $name = 'make:indexDataProvider';
+    protected $name = 'fifth:indexDataProvider';
 
     protected $description = 'Make DataProvider for given Model';
 

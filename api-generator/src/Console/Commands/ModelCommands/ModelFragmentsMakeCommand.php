@@ -11,7 +11,7 @@ class ModelFragmentsMakeCommand extends MainMakeCommand
      *
      * @var string
      */
-    protected $signature = 'make:modelFragment {name} {--fragment=Relations}';
+    protected $signature = 'fifth:modelFragment {name} {--fragment=Relations}';
 
     /**
      * The console command description.

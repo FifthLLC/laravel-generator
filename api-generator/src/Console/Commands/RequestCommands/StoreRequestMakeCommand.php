@@ -6,7 +6,7 @@ use Fifth\Generator\Commands\MainMakeCommand;
 
 class StoreRequestMakeCommand extends MainMakeCommand
 {
-    protected $name = 'make:storeRequest';
+    protected $name = 'fifth:storeRequest';
 
     protected $description = 'Make StoreRequest for given Model';
 

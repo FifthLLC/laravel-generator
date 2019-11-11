@@ -6,7 +6,7 @@ use Fifth\Generator\Commands\MainMakeCommand;
 
 class TransformerMakeCommand extends MainMakeCommand
 {
-    protected $name = 'make:transformer';
+    protected $name = 'fifth:transformer';
 
     protected $description = 'Transformer creation command';
 

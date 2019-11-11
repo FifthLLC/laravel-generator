@@ -6,7 +6,7 @@ use Fifth\Generator\Commands\MainMakeCommand;
 
 class FilterMakeCommand extends MainMakeCommand
 {
-    protected $name = 'make:filter';
+    protected $name = 'fifth:filter';
 
     protected $description = 'Make IndexFilter for given Model';
 

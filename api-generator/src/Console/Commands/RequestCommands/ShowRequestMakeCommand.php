@@ -6,7 +6,7 @@ use Fifth\Generator\Commands\MainMakeCommand;
 
 class ShowRequestMakeCommand extends MainMakeCommand
 {
-    protected $name = 'make:showRequest';
+    protected $name = 'fifth:showRequest';
 
     protected $description = 'Make ShowRequest for given Model';
 

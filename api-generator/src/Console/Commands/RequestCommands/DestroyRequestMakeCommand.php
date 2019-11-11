@@ -6,7 +6,7 @@ use Fifth\Generator\Commands\MainMakeCommand;
 
 class DestroyRequestMakeCommand extends MainMakeCommand
 {
-    protected $name = 'make:destroyRequest';
+    protected $name = 'fifth:destroyRequest';
 
     protected $description = 'Make DestroyRequest for given Model';
 

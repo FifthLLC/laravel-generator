@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class ModelMakeCommand extends MainMakeCommand
 {
-    protected $name = 'make:baseModel';
+    protected $name = 'fifth:baseModel';
 
     protected $type = 'Model';
 
@@ -29,7 +29,7 @@ class ModelMakeCommand extends MainMakeCommand
     private function createFragments()
     {
         foreach ($this->getDefaultFragmentNames() as $fragment) {
-            Artisan::call('make:modelFragment', [
+            Artisan::call('fifth:modelFragment', [
                 'name'       => $this->argument('name'),
                 '--fragment' => $fragment
             ]);

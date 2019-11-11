@@ -6,7 +6,7 @@ use Fifth\Generator\Commands\MainMakeCommand;
 
 class IndexRequestMakeCommand extends MainMakeCommand
 {
-    protected $name = 'make:indexRequest';
+    protected $name = 'fifth:indexRequest';
 
     protected $description = 'Make IndexRequest for given Model';
 

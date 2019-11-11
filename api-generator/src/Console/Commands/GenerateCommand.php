@@ -4,10 +4,11 @@ namespace Fifth\Generator\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 
 class GenerateCommand extends Command
 {
-    protected $signature = 'fifth:generate-all {name}';
+    protected $signature = 'fifth:generate {name}';
 
     protected $description = 'Generate Requests, Controller, DataProviders';
 
@@ -18,18 +19,23 @@ class GenerateCommand extends Command
 
     public function handle(): void
     {
-        Artisan::call('make:baseModel', ['name' => 'Models/'.$this->argument('name')]);
-        Artisan::call('make:apiController', ['name' => $this->argument('name')]);
-        Artisan::call('make:indexDataProvider', ['name' => $this->argument('name')]);
-        Artisan::call('make:transformer', ['name' => $this->argument('name')]);
-        Artisan::call('make:filter', ['name' => $this->argument('name')]);
-        Artisan::call('make:indexRequest', ['name' => $this->argument('name')]);
-        Artisan::call('make:storeRequest', ['name' => $this->argument('name')]);
-        Artisan::call('make:showRequest', ['name' => $this->argument('name')]);
-        Artisan::call('make:updateRequest', ['name' => $this->argument('name')]);
-        Artisan::call('make:destroyRequest', ['name' => $this->argument('name')]);
-//        Artisan::call('make:policy', ['name'  => $this->argument('name') . 'Policy','--model' => 'Models/' .$this->argument('name')]);
-        Artisan::call('make:policy11',  ['name' => $this->argument('name')]);
-        $this->info('Controller, Model, Migration, Transformer, Requests, Filter, Policy created successfully.');
+        Artisan::call('fifth:baseModel', ['name' => 'Models/'.$this->argument('name')]);
+        Artisan::call('fifth:apiController', ['name' => $this->argument('name')]);
+        Artisan::call('fifth:indexDataProvider', ['name' => $this->argument('name')]);
+        Artisan::call('fifth:transformer', ['name' => $this->argument('name')]);
+        Artisan::call('fifth:filter', ['name' => $this->argument('name')]);
+        Artisan::call('fifth:indexRequest', ['name' => $this->argument('name')]);
+        Artisan::call('fifth:storeRequest', ['name' => $this->argument('name')]);
+        Artisan::call('fifth:showRequest', ['name' => $this->argument('name')]);
+        Artisan::call('fifth:updateRequest', ['name' => $this->argument('name')]);
+        Artisan::call('fifth:destroyRequest', ['name' => $this->argument('name')]);
+        Artisan::call('fifth:policy',  ['name' => $this->argument('name')]);
+        Artisan::call('make:seeder',  ['name' => $this->getPluralName().'tableSeeder']);
+        $this->info('Controller, Model, Migration, Transformer, Requests, Filter, Policy, Seeder created successfully.');
+    }
+
+    private function getPluralName()
+    {
+        return ucfirst(Str::snake(Str::plural(class_basename($this->argument('name')))));
     }
 }

@@ -6,7 +6,7 @@ use Fifth\Generator\Commands\MainMakeCommand;
 
 class ApiControllerMakeCommand extends MainMakeCommand
 {
-    protected $name = 'make:apiController';
+    protected $name = 'fifth:apiController';
 
     protected $description = 'Api controller creation command';
 
