@@ -12,17 +12,7 @@ abstract class SorterFilter extends AbstractFilter
     abstract protected function orders(): array;
 
     protected $withOrders = true;
-
-    protected $defaultOrder = [
-        'column'    => 'updated_at',
-        'direction' => 'desc',
-    ];
-
-    public function __construct(Request $request)
-    {
-        $this->setRequest($request);
-    }
-
+    
     public function handle(Builder $query): Builder
     {
         parent::handle($query);
