@@ -1,6 +1,6 @@
 {
-    "name": "fifth/fifth",
-    "description": "The fifth packages.",
+    "name": "fifth/laravel-generator",
+    "description": "The fifth laravel generator package.",
     "authors": [
         {
             "name": "SurenAvagyanG",
@@ -10,7 +10,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Fifth\\Generator\\": "api-generator/src"
+            "Fifth\\Generator\\": "src"
         }
     },
     "require": {}

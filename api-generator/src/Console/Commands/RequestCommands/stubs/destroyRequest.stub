@@ -2,10 +2,10 @@
 
 namespace DummyNamespace;
 
-use Fifth\Generator\Http\Requests\DataPersistRequest;
 use Illuminate\Support\Facades\Auth;
+use Fifth\Generator\Http\Requests\BaseRequest;
 
-class DestroyRequest extends DataPersistRequest
+class DestroyRequest extends BaseRequest
 {
     public function authorizationRules()
     {
@@ -21,7 +21,7 @@ class DestroyRequest extends DataPersistRequest
         ];
     }
 
-    public function persist(): self
+    public function manage(): self
     {
         $this->dummyClass->delete();
 

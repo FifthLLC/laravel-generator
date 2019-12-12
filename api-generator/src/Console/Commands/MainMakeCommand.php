@@ -13,6 +13,7 @@ abstract class MainMakeCommand extends GeneratorCommand
 
     public function handle()
     {
+        $this->prepareData();
         $name = $this->qualifyClass($this->getClassName());
 
         $path = $this->getPath($name);
@@ -40,6 +41,10 @@ abstract class MainMakeCommand extends GeneratorCommand
         $this->info($this->type.' created successfully.');
     }
 
+    protected function prepareData()
+    {
+        //
+    }
 
     protected function buildClass($name)
     {
@@ -64,7 +69,6 @@ abstract class MainMakeCommand extends GeneratorCommand
         $replaceableVariables = $this->workoutReplaceableVariables();
 
         foreach ($replaceableVariables as $from => $to) {
-
             $stub = str_replace("{{" . $from . "}}", $to, $stub);
         }
 

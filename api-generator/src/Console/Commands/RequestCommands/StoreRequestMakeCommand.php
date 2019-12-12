@@ -3,14 +3,25 @@
 namespace Fifth\Generator\Commands\RequestCommands;
 
 use Fifth\Generator\Commands\MainMakeCommand;
+use Fifth\Generator\Console\Commands\Fragments\HasFields;
+use Fifth\Generator\Console\Commands\ModelCommands\Classes\ModelField;
+use Fifth\Generator\Console\Commands\RequestCommands\PersisterRequest;
+use Symfony\Component\Console\Input\InputOption;
 
 class StoreRequestMakeCommand extends MainMakeCommand
 {
+    use HasFields, PersisterRequest;
+
     protected $name = 'fifth:storeRequest';
 
     protected $description = 'Make StoreRequest for given Model';
 
     protected $type = 'StoreRequest';
+
+    protected function prepareData()
+    {
+        $this->prepareFields();
+    }
 
     protected function getClassName()
     {
@@ -29,11 +40,11 @@ class StoreRequestMakeCommand extends MainMakeCommand
 
     protected function buildClass($name)
     {
-        $stub = $this->files->get($this->getStub());
+        $stub = parent::buildClass($name);
 
         $stub = $this->replaceClassInstance($stub, $name);
 
-        return $this->replaceNamespace($stub, $name)->replaceClass($stub, $name);
+        return $stub;
     }
 
     protected function replaceClassInstance($stub, $name)
@@ -41,5 +52,12 @@ class StoreRequestMakeCommand extends MainMakeCommand
         $class = str_replace($this->getNamespace($name).'\\', '', $name);
 
         return str_replace('dummyClass', strtolower($class), $stub);
+    }
+
+    protected function workoutReplaceableVariables(): array
+    {
+        return [
+            'RULES' => $this->getRules()
+        ];
     }
 }

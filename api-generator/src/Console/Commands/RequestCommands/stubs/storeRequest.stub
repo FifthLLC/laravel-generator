@@ -20,7 +20,7 @@ class StoreRequest extends DataPersistRequest
     public function rules(): array
     {
         return [
-            //
+{{RULES}}
         ];
     }
 

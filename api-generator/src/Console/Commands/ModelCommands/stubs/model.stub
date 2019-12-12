@@ -11,6 +11,6 @@ class DummyClass extends BaseModel
     use Relations, Scopes;
 
     protected $fillable = [
-        //
+        {{FILLABLES}}
     ];
 }

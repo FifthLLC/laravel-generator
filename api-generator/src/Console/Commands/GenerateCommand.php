@@ -2,13 +2,17 @@
 
 namespace Fifth\Generator\Commands;
 
+use Fifth\Generator\Console\Commands\Fragments\HasFields;
+use Fifth\Generator\Console\Commands\ModelCommands\Classes\ModelField;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
 class GenerateCommand extends Command
 {
-    protected $signature = 'fifth:generate {name}';
+    use HasFields;
+
+    protected $signature = 'fifth:generate {name} {--fields=} {--withTimestamps}';
 
     protected $description = 'Generate Requests, Controller, DataProviders';
 
@@ -19,19 +23,61 @@ class GenerateCommand extends Command
 
     public function handle(): void
     {
-        Artisan::call('fifth:baseModel', ['name' => 'Models/'.$this->argument('name')]);
+        $this->setFields();
+
+        Artisan::call('fifth:model', [
+            'name' => $this->argument('name'),
+            '--fields' => $this->getImplodedFields(),
+            '--withTimestamps' => $this->option('withTimestamps')
+        ]);
+
         Artisan::call('fifth:apiController', ['name' => $this->argument('name')]);
         Artisan::call('fifth:indexDataProvider', ['name' => $this->argument('name')]);
-        Artisan::call('fifth:transformer', ['name' => $this->argument('name')]);
-        Artisan::call('fifth:filter', ['name' => $this->argument('name')]);
+        Artisan::call('fifth:transformer', [
+            'name' => $this->argument('name'),
+            '--fields' => $this->getImplodedFields(),
+        ]);
+        Artisan::call('fifth:filter', [
+            'name' => $this->argument('name'),
+            '--fields' => $this->getImplodedFields(),
+        ]);
         Artisan::call('fifth:indexRequest', ['name' => $this->argument('name')]);
-        Artisan::call('fifth:storeRequest', ['name' => $this->argument('name')]);
         Artisan::call('fifth:showRequest', ['name' => $this->argument('name')]);
-        Artisan::call('fifth:updateRequest', ['name' => $this->argument('name')]);
         Artisan::call('fifth:destroyRequest', ['name' => $this->argument('name')]);
+
+        Artisan::call('fifth:storeRequest', [
+            'name' => $this->argument('name'),
+            '--fields' => $this->getImplodedFields(),
+        ]);
+        Artisan::call('fifth:updateRequest', [
+            'name' => $this->argument('name'),
+            '--fields' => $this->getImplodedFields(),
+        ]);
         Artisan::call('fifth:policy',  ['name' => $this->argument('name')]);
-        Artisan::call('make:seeder',  ['name' => $this->getPluralName().'tableSeeder']);
+        Artisan::call('fifth:seeder',  [
+            'name' => $this->getPluralName().'TableSeeder',
+            '--model' => $this->argument('name'),
+            '--fields' => $this->getImplodedFields(),
+        ]);
+        Artisan::call('fifth:factory',  [
+            'name' => $this->argument('name').'Factory',
+            '--model' => $this->argument('name'),
+            '--fields' => $this->getImplodedFields(),
+        ]);
+        dd('enddd');
         $this->info('Controller, Model, Migration, Transformer, Requests, Filter, Policy, Seeder created successfully.');
+    }
+
+    protected function getFieldsData()
+    {
+        return (array)explode(':;:', $this->option('fields'));
+    }
+
+    protected function setFields()
+    {
+        foreach ($this->getFieldsData() as $fieldData) {
+            $this->fields[] = ModelField::fromStr($fieldData);
+        }
     }
 
     private function getPluralName()

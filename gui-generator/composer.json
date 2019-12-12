@@ -1,0 +1,17 @@
+{
+    "name": "fifth/laravel-gui-generator",
+    "description": "The fifth laravel gui generator package.",
+    "authors": [
+        {
+            "name": "SurenAvagyanG",
+            "email": "suren@fifth-llc.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Fifth\\GuiGenerator\\": "src"
+        }
+    },
+    "require": {}
+}
