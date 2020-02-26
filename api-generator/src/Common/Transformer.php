@@ -1,6 +1,6 @@
 <?php
 
-namespace Fifth\Generator\Transformers;
+namespace Fifth\Generator\Common;
 
 use Illuminate\Database\Eloquent\Model;
 

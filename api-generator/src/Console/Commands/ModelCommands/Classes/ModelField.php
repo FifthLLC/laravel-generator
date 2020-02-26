@@ -11,9 +11,49 @@ use PhpParser\Node\Expr\Cast\Object_;
 
 class ModelField
 {
+    public const MIGRATION_STRING_TYPES = [
+        'only_create' => 1,
+        'only_foreign' => 2,
+        'create_with_foreign' => 3
+    ];
+
     public const DATA_FIELDS = [
-        'type', 'length', 'default', 'nullable', 'unique', 'index',
-        'fillable', 'searchable', 'filterable', 'orderable', 'validations',
+        'type' => [
+            'type' => 'string'
+        ],
+        'length' => [
+            'type' => 'string'
+        ],
+        'default' => [
+            'type' => 'string'
+        ],
+        'nullable' => [
+            'type' => 'boolean'
+        ],
+        'unique' => [
+            'type' => 'boolean'
+        ],
+        'unsigned' => [
+            'type' => 'boolean'
+        ],
+        'index' => [
+            'type' => 'boolean'
+        ],
+        'fillable' => [
+            'type' => 'boolean'
+        ],
+        'searchable' => [
+            'type' => 'boolean'
+        ],
+        'filterable' => [
+            'type' => 'boolean'
+        ],
+        'orderable' => [
+            'type' => 'boolean'
+        ],
+        'validations' => [
+            'type' => 'string'
+        ],
     ];
 
     public $name;
@@ -21,6 +61,7 @@ class ModelField
     public $length;
     public $nullable;
     public $unique;
+    public $unsigned;
     public $index;
     public $fillable;
     public $searchable;
@@ -28,12 +69,16 @@ class ModelField
     public $validations;
     public $default;
     public $orderable;
+    public $relatedColumn;
+    public $relatedTable;
+    public $onDelete;
+    public $isForeign;
 
     public static function fromObj(Object $obj): self
     {
         $modelField = new ModelField();
         foreach (get_object_vars($obj) as $key => $value) {
-            $modelField->{$key} = $value;
+            $modelField->{$key} = $value ?: null;
         }
 
         return $modelField;
@@ -55,18 +100,18 @@ class ModelField
         $data = explode('=>', $str);
         $modelField->name = array_shift($data);
 
-        $data = explode(',', $data[0] ?? []);
+        $data = explode(',', $data[0] ?? '');
 
-        foreach (self::DATA_FIELDS as $i => $fieldName) {
+        foreach (array_keys(self::DATA_FIELDS) as $i => $fieldName) {
             $modelField->{$fieldName} = $data[$i] ?? null;
         }
 
         return $modelField;
     }
 
-    public function toMigrationString(): string
+    public function toMigrationString($migrationType = self::MIGRATION_STRING_TYPES['only_create']): string
     {
-        return (new MigrationFieldGenerator($this))->getMigrationString();
+        return (new MigrationFieldGenerator($this))->getMigrationString($migrationType);
     }
 
     public function toFilterOrderableString(): string
@@ -113,5 +158,18 @@ class ModelField
     public function getDefaultValue()
     {
         return "'$this->default'";
+    }
+
+    public function getOnDelete()
+    {
+        switch ($this->onDelete) {
+            case "set_null": return 'set null';
+            case "cascade": return 'Cascade';
+        }
+    }
+
+    public function getForeign()
+    {
+        return $this->isForeign;
     }
 }

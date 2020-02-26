@@ -1,4 +1,5 @@
 <?php
 return [
-    'test_config' => true
+    'test_config' => true,
+    'database' => 'sqlite'
 ];

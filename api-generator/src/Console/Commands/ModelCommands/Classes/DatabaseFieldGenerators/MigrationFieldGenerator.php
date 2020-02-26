@@ -16,18 +16,27 @@ class MigrationFieldGenerator
         $this->modelField = $field;
     }
 
-    public function getMigrationString()
+    public function getMigrationString($migrationType)
     {
         if(!$this->migrationString) {
-            $this->setMigrationString();
+            $this->setMigrationString($migrationType);
         }
 
         return $this->migrationString;
     }
 
-    protected function setMigrationString()
+    protected function setMigrationString($migrationType)
     {
-        $this->migrationString = $this->compositeMigrationString();
+        if($migrationType != ModelField::MIGRATION_STRING_TYPES['only_create'] && !$this->modelField->getForeign()) {
+            $migrationType = ModelField::MIGRATION_STRING_TYPES['only_create'];
+        }
+
+        switch ($migrationType) {
+            case ModelField::MIGRATION_STRING_TYPES['only_create']: $this->migrationString = $this->compositeMigrationString(); break;
+            case ModelField::MIGRATION_STRING_TYPES['only_foreign']: $this->migrationString = $this->compositeForeignMigrationString(); break;
+            case ModelField::MIGRATION_STRING_TYPES['create_with_foreign']:
+                $this->migrationString = $this->compositeMigrationString() ."\n" . $this->compositeForeignMigrationString(); break;
+        }
     }
 
     protected function initRaw()
@@ -45,6 +54,7 @@ class MigrationFieldGenerator
         $str = $this->initRaw();
         $str .= $this->appendType();
         $str .= $this->appendNullable();
+        $str .= $this->appendUnsigned();
         $str .= $this->appendDefaultValue();
         $str .= $this->appendUnique();
         $str .= $this->appendIndex();
@@ -57,6 +67,10 @@ class MigrationFieldGenerator
         return $this->modelField->unique ? '->unique()' : '';
     }
 
+    protected function appendUnsigned()
+    {
+        return $this->modelField->unsigned ? '->unsigned()' : '';
+    }
     protected function appendIndex()
     {
         return $this->modelField->index ? '->index()' : '';
@@ -76,5 +90,34 @@ class MigrationFieldGenerator
     {
         return "{$this->modelField->getMigrationType()}('{$this->modelField->name}'" .
             ($this->modelField->getLength() ? ", {$this->modelField->getLength()}" : '') .")";
+    }
+    public function compositeForeignMigrationString()
+    {
+        $str = $this->initRaw();
+        $str .= $this->appendForeign();
+        $str .= $this->appendReferences();
+        $str .= $this->appendRelatedTable();
+        $str .= $this->appendOnDelete();
+        return $this->finishRaw($str);
+    }
+
+    protected function appendReferences()
+    {
+        return "->references('{$this->modelField->relatedColumn}')";
+    }
+
+    protected function appendRelatedTable()
+    {
+        return "->on('{$this->modelField->relatedTable}')";
+    }
+
+    protected function appendOnDelete()
+    {
+        return "->onDelete('{$this->modelField->getOnDelete()}')";
+    }
+
+    protected function appendForeign()
+    {
+        return "foreign('{$this->modelField->name}')";
     }
 }

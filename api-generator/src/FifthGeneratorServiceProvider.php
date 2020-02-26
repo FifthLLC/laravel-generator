@@ -32,6 +32,7 @@ class FifthGeneratorServiceProvider extends ServiceProvider
     {
         $configPath = __DIR__ . '/../config/fifth.php';
         $this->mergeConfigFrom($configPath, 'fifth');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**
@@ -61,4 +62,5 @@ class FifthGeneratorServiceProvider extends ServiceProvider
             FactoryMakeCommand::class
         ]);
     }
+
 }

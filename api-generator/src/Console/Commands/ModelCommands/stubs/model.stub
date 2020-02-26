@@ -4,7 +4,7 @@ namespace DummyNamespace;
 
 use App\Models\Fragments\DummyClass\Relations;
 use App\Models\Fragments\DummyClass\Scopes;
-use Fifth\Generator\Models\BaseModel;
+use Fifth\Generator\Common\BaseModel;
 
 class DummyClass extends BaseModel
 {

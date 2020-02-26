@@ -1,6 +1,6 @@
 <?php
 
-namespace Fifth\Generator\Models;
+namespace Fifth\Generator\Common;
 
 use Fifth\Generator\Http\Filters\AbstractFilter;
 use Illuminate\Database\Eloquent\Builder;

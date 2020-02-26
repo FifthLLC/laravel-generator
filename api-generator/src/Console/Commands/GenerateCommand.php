@@ -12,7 +12,7 @@ class GenerateCommand extends Command
 {
     use HasFields;
 
-    protected $signature = 'fifth:generate {name} {--fields=} {--withTimestamps}';
+    protected $signature = 'fifth:generate {name} {--fields=} {--withTimestamps} {--relations}';
 
     protected $description = 'Generate Requests, Controller, DataProviders';
 
@@ -28,7 +28,8 @@ class GenerateCommand extends Command
         Artisan::call('fifth:model', [
             'name' => $this->argument('name'),
             '--fields' => $this->getImplodedFields(),
-            '--withTimestamps' => $this->option('withTimestamps')
+            '--withTimestamps' => $this->option('withTimestamps'),
+            '--relations' => $this->getRelations(),
         ]);
 
         Artisan::call('fifth:apiController', ['name' => $this->argument('name')]);
@@ -70,7 +71,13 @@ class GenerateCommand extends Command
 
     protected function getFieldsData()
     {
-        return (array)explode(':;:', $this->option('fields'));
+
+        return array_filter((array)explode(':;:', $this->option('fields')));
+    }
+
+    protected function getRelations()
+    {
+        return $this->option('relations');
     }
 
     protected function setFields()

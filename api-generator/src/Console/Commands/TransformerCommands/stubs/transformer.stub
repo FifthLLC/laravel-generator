@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use Fifth\Generator\Transformers\Transformer;
+use Fifth\Generator\Common\Transformer;
 use Illuminate\Database\Eloquent\Model;
 
 class DummyClassTransformer extends Transformer

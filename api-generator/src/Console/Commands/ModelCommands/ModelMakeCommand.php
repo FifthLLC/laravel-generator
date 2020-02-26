@@ -5,6 +5,7 @@ namespace Fifth\Generator\Commands\ModelCommands;
 use Fifth\Generator\Commands\MainMakeCommand;
 use Fifth\Generator\Console\Commands\Fragments\HasFields;
 use Fifth\Generator\Console\Commands\ModelCommands\Classes\ModelField;
+use Fifth\Generator\Console\Commands\ModelCommands\Classes\RelationGenerators\RelationManager;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
@@ -17,6 +18,8 @@ class ModelMakeCommand extends MainMakeCommand
 
     protected $type = 'Model';
 
+    protected $relationFragmentData;
+
     protected function getStub()
     {
         return __DIR__.'/stubs/model.stub';
@@ -27,11 +30,25 @@ class ModelMakeCommand extends MainMakeCommand
     {
         $this->setFields();
 
+        $this->handleRelations();
+
         $this->createFragments();
 
         $this->createMigration();
 
+//        $this->modelCreated();
+
         parent::handle();
+    }
+
+    private function handleRelations()
+    {
+        $relationManager = (new RelationManager(json_decode($this->option('relations'), true)));
+        $relationManager->handle();
+
+        $this->relationFragmentData = $relationManager->getRelationFragmentData();
+
+        $this->fields = array_merge($this->fields, ...$relationManager->getRelationFields());
     }
 
     private function createFragments()
@@ -55,6 +72,21 @@ class ModelMakeCommand extends MainMakeCommand
             '--withTimestamps' => $this->option('withTimestamps')
         ]);
     }
+//
+//    private function modelCreated()
+//    {
+//        $fifthModel = FifthModel::create([
+//            'name' => $this->argument('name'),
+//            'withTimestamps' => !!$this->option('withTimestamps')
+//        ]);
+//
+//        foreach ($this->fields as $field) {
+//            FifthModelField::create(array_merge(get_object_vars($field), [
+//                'fifth_model_id' => $fifthModel->id,
+//            ]));
+//        }
+//
+//    }
 
     private function getDefaultFragmentNames()
     {
@@ -94,6 +126,7 @@ class ModelMakeCommand extends MainMakeCommand
         return [
             ['fields', 'f', InputOption::VALUE_NONE, 'model fields'],
             ['withTimestamps', 't', InputOption::VALUE_NONE, 'with timestamps'],
+            ['relations', 'r', InputOption::VALUE_NONE, 'relations'],
         ];
     }
 }

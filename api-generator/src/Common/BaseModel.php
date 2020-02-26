@@ -1,8 +1,7 @@
 <?php
 
-namespace Fifth\Generator\Models;
+namespace Fifth\Generator\Common;
 
-use Fifth\Generator\Models\BaseFragment;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseModel extends Model

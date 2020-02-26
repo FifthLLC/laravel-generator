@@ -27,7 +27,7 @@ class ModelMigrationMakeCommand extends MainMakeCommand
         $this->setFields();
 
         $this->fields = array_map(function (ModelField $field) {
-            return $field->toMigrationString();
+            return $field->toMigrationString(ModelField::MIGRATION_STRING_TYPES['create_with_foreign']);
         }, $this->fields);
 
         $this->fields[] = $this->appendTimeStamps();

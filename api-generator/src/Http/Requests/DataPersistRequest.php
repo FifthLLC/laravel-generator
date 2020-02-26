@@ -2,7 +2,8 @@
 
 namespace Fifth\Generator\Http\Requests;
 
-use Fifth\Generator\Models\BaseModel;
+
+use Fifth\Generator\Common\BaseModel;
 
 abstract class DataPersistRequest extends BaseRequest
 {

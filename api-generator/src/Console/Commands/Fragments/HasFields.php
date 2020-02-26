@@ -8,7 +8,7 @@ use Fifth\Generator\Console\Commands\ModelCommands\Classes\ModelField;
 
 trait HasFields
 {
-    protected $fields;
+    protected $fields = [];
     private function setFields()
     {
         $this->fields = array_map(function ($fieldData) {
