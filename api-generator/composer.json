@@ -7,7 +7,7 @@
             "email": "suren@fifth-llc.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Fifth\\Generator\\": "src"
