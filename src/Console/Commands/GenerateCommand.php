@@ -65,7 +65,7 @@ class GenerateCommand extends Command
             '--model' => $this->argument('name'),
             '--fields' => $this->getImplodedFields(),
         ]);
-        dd('enddd');
+
         $this->info('Controller, Model, Migration, Transformer, Requests, Filter, Policy, Seeder created successfully.');
     }
 
