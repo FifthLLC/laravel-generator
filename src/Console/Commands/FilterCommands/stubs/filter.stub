@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Http\Filters\DummyClass;
+
+use Fifth\Generator\Http\Filters\AbstractFilter;
+
+class IndexFilter extends AbstractFilter
+{
+    protected $orderColumnMap = [
+{{ORDER_FIELDS}}
+    ];
+
+    public function rules(): array
+    {
+        return [
+{{SEARCH_FIELDS}}
+{{FILTER_FIELDS}}
+        ];
+    }
+}

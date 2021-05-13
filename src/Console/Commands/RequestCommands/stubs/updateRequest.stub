@@ -1,0 +1,36 @@
+<?php
+
+namespace DummyNamespace;
+
+use Fifth\Generator\Http\Requests\DataPersistRequest;
+use App\Models\DummyClass;
+use Illuminate\Support\Facades\Auth;
+
+class UpdateRequest extends DataPersistRequest
+{
+    public function authorizationRules()
+    {
+        return [
+            'default' => Auth::user()->can('update', $this->dummyClass)
+        ];
+    }
+
+    public function rules(): array
+    {
+        return [
+{{RULES}}
+        ];
+    }
+
+    public function persist(): self
+    {
+        $this->dummyClass->safeUpdate($this->getProcessedData());
+
+        return $this;
+    }
+
+    public function getDummyClass(): DummyClass
+    {
+        return $this->dummyClass;
+    }
+}
