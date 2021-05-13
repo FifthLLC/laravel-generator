@@ -1,8 +1,8 @@
 <?php
 
-namespace Fifth\Generator\Commands\FilterCommands;
+namespace Fifth\Generator\Console\Commands\FilterCommands;
 
-use Fifth\Generator\Commands\MainMakeCommand;
+use Fifth\Generator\Console\Commands\MainMakeCommand;
 use Fifth\Generator\Console\Commands\Fragments\HasFields;
 use Fifth\Generator\Console\Commands\ModelCommands\Classes\ModelField;
 use Symfony\Component\Console\Input\InputOption;

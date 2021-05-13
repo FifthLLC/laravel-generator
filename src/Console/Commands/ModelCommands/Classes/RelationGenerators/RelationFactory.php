@@ -11,7 +11,7 @@ use Fifth\Generator\Console\Commands\ModelCommands\Classes\RelationGenerators\Re
 
 class RelationFactory
 {
-    public static function getRelationByType($type): BaseRelation
+    public static function getRelationByType($type): ?BaseRelation
     {
         switch ($type) {
             case 'hasOne': return new HasOne();

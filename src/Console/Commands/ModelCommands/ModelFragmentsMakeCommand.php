@@ -1,8 +1,8 @@
 <?php
 
-namespace Fifth\Generator\Commands\ModelCommands;
+namespace Fifth\Generator\Console\Commands\ModelCommands;
 
-use Fifth\Generator\Commands\MainMakeCommand;
+use Fifth\Generator\Console\Commands\MainMakeCommand;
 
 class ModelFragmentsMakeCommand extends MainMakeCommand
 {

@@ -6,9 +6,9 @@ namespace Fifth\Generator\Console\Commands\ModelCommands\Classes\RelationGenerat
 
 class RelationManager
 {
-    private ?array $relations;
-    private ?string $relationFragmentData = '';
-    private ?array $relationFields = [];
+    private $relations;
+    private $relationFragmentData = '';
+    private $relationFields = [];
 
     public function __construct($relationsData)
     {

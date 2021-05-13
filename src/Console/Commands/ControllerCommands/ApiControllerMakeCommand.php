@@ -1,8 +1,8 @@
 <?php
 
-namespace Fifth\Generator\Commands\ControllerCommands;
+namespace Fifth\Generator\Console\Commands\ControllerCommands;
 
-use Fifth\Generator\Commands\MainMakeCommand;
+use Fifth\Generator\Console\Commands\MainMakeCommand;
 
 class ApiControllerMakeCommand extends MainMakeCommand
 {
@@ -19,7 +19,7 @@ class ApiControllerMakeCommand extends MainMakeCommand
 
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Http\Controllers\Api' . '\\' . $this->getNameInput();
+        return $rootNamespace.'\Http\Controllers\Api\V1' . '\\' . $this->getNameInput();
     }
 
     protected function getClassName()

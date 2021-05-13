@@ -2,23 +2,23 @@
 
 namespace Fifth\Generator;
 
-use Fifth\Generator\Commands\ModelCommands\ModelFragmentsMakeCommand;
-use Fifth\Generator\Commands\ModelCommands\ModelMakeCommand;
-use Fifth\Generator\Commands\ControllerCommands\ApiControllerMakeCommand;
-use Fifth\Generator\Commands\DataProviderCommands\DataProviderMakeCommand;
-use Fifth\Generator\Commands\FilterCommands\FilterMakeCommand;
-use Fifth\Generator\Commands\GenerateCommand;
-use Fifth\Generator\Commands\MigrateRefreshCommand;
-use Fifth\Generator\Commands\ModelCommands\ModelMigrationMakeCommand;
-use Fifth\Generator\Commands\ModelCommands\PolicyMakeCommand;
-use Fifth\Generator\Commands\RequestCommands\DestroyRequestMakeCommand;
-use Fifth\Generator\Commands\RequestCommands\IndexRequestMakeCommand;
-use Fifth\Generator\Commands\RequestCommands\ShowRequestMakeCommand;
-use Fifth\Generator\Commands\RequestCommands\StoreRequestMakeCommand;
-use Fifth\Generator\Commands\RequestCommands\UpdateRequestMakeCommand;
-use Fifth\Generator\Commands\SeedCommands\FactoryMakeCommand;
-use Fifth\Generator\Commands\SeedCommands\SeederMakeCommand;
-use Fifth\Generator\Commands\TransformerCommands\TransformerMakeCommand;
+use Fifth\Generator\Console\Commands\ModelCommands\ModelFragmentsMakeCommand;
+use Fifth\Generator\Console\Commands\ModelCommands\ModelMakeCommand;
+use Fifth\Generator\Console\Commands\ControllerCommands\ApiControllerMakeCommand;
+use Fifth\Generator\Console\Commands\DataProviderCommands\DataProviderMakeCommand;
+use Fifth\Generator\Console\Commands\FilterCommands\FilterMakeCommand;
+use Fifth\Generator\Console\Commands\GenerateCommand;
+use Fifth\Generator\Console\Commands\MigrateRefreshCommand;
+use Fifth\Generator\Console\Commands\ModelCommands\ModelMigrationMakeCommand;
+use Fifth\Generator\Console\Commands\PolicyCommands\PolicyMakeCommand;
+use Fifth\Generator\Console\Commands\RequestCommands\DestroyRequestMakeCommand;
+use Fifth\Generator\Console\Commands\RequestCommands\IndexRequestMakeCommand;
+use Fifth\Generator\Console\Commands\RequestCommands\ShowRequestMakeCommand;
+use Fifth\Generator\Console\Commands\RequestCommands\StoreRequestMakeCommand;
+use Fifth\Generator\Console\Commands\RequestCommands\UpdateRequestMakeCommand;
+use Fifth\Generator\Console\Commands\SeedCommands\FactoryMakeCommand;
+use Fifth\Generator\Console\Commands\SeedCommands\SeederMakeCommand;
+use Fifth\Generator\Console\Commands\TransformerCommands\TransformerMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
 class FifthGeneratorServiceProvider extends ServiceProvider

@@ -1,8 +1,8 @@
 <?php
 
-namespace Fifth\Generator\Commands\DataProviderCommands;
+namespace Fifth\Generator\Console\Commands\DataProviderCommands;
 
-use Fifth\Generator\Commands\MainMakeCommand;
+use Fifth\Generator\Console\Commands\MainMakeCommand;
 
 class DataProviderMakeCommand extends MainMakeCommand
 {

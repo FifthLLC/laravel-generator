@@ -75,7 +75,7 @@ trait Helpers
         return $this->relationFilter(implode('.', $remainingRelations), $column, $queryMethod);
     }
 
-    protected function params(string $column, string $queryMethod = 'whereIn', array $additionalParams = []): array
+    protected function params($column, string $queryMethod = 'whereIn', array $additionalParams = []): array
     {
         return [
             'params' => array_merge([

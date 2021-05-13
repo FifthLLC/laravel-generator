@@ -13,7 +13,7 @@ trait HasFields
     {
         $this->fields = array_map(function ($fieldData) {
             return ModelField::fromObj($fieldData);
-        }, json_decode($this->option('fields')));
+        }, (array)json_decode($this->option('fields')));
     }
 
     protected function getImplodedFields()

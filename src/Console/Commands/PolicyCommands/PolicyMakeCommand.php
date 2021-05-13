@@ -1,8 +1,8 @@
 <?php
 
-namespace Fifth\Generator\Commands\ModelCommands;
+namespace Fifth\Generator\Console\Commands\PolicyCommands;
 
-use Fifth\Generator\Commands\MainMakeCommand;
+use Fifth\Generator\Console\Commands\MainMakeCommand;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 

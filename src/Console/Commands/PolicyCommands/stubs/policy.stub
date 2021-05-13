@@ -29,7 +29,7 @@ class DummyClassPolicy extends BasePolicy
         return true;
     }
 
-    public function delete(User $user, DummyClass $dummyClass)
+    public function destroy(User $user, DummyClass $dummyClass)
     {
         return true;
     }

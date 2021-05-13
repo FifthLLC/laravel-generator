@@ -28,7 +28,7 @@ class DestroyRequest extends BaseRequest
         return $this;
     }
 
-    protected function getMessage(): string
+    public function getMessage(): string
     {
         return "DummyClass successfully deleted.";
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Fifth\Generator\Commands\RequestCommands;
+namespace Fifth\Generator\Console\Commands\RequestCommands;
 
-use Fifth\Generator\Commands\MainMakeCommand;
+use Fifth\Generator\Console\Commands\MainMakeCommand;
 
 class IndexRequestMakeCommand extends MainMakeCommand
 {

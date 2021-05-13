@@ -8,8 +8,8 @@ use Fifth\Generator\Console\Commands\ModelCommands\Classes\ModelField;
 
 class MigrationFieldGenerator
 {
-    protected ModelField $modelField;
-    protected string $migrationString = '';
+    protected $modelField;
+    protected $migrationString = '';
 
     public function __construct(ModelField $field)
     {

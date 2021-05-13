@@ -10,7 +10,7 @@ use Fifth\Generator\Console\Commands\ModelCommands\Classes\ModelField;
 
 class FactoryFieldGenerator
 {
-    protected ModelField $modelField;
+    protected $modelField;
 
     public function __construct(ModelField $field)
     {

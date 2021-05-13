@@ -3,6 +3,8 @@
 namespace Fifth\Generator\Common;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use Illuminate\Pagination\Paginator;
 
 abstract class Transformer
 {
@@ -24,11 +26,13 @@ abstract class Transformer
      * @param mixed ...$args
      * @return array
      */
-    public function transformPagination($paginator, string $method = 'simpleTransform', ...$args) : array
+    public function transformPagination(Paginator $paginator, string $method = 'simpleTransform', ...$args) : array
     {
         return [
             'total' => method_exists($paginator, 'total') ? $paginator->total() : null,
             'hasMorePages' => method_exists($paginator, 'hasMorePages') ? $paginator->hasMorePages() : null,
+            'hasPrevPages' => $paginator->currentPage() > 1,
+            'page' => $paginator->currentPage(),
             'items' => $this->transformArray($paginator->items(), $method, ...$args)
         ];
 
@@ -36,9 +40,11 @@ abstract class Transformer
 
     public function transformCollection(\ArrayAccess $items, string $method = 'simpleTransform', ...$args) : array
     {
-        return $items->map(function ($item) use ($method,$args) {
-            return $this->{$method}($item, ...$args);
-        })->toArray();
+        return [
+            'items' => $items->map(function ($item) use ($method,$args) {
+                return $this->{$method}($item, ...$args);
+            })->toArray()
+        ];
     }
 
     public function transformArray(array $items, string $method = 'simpleTransform', ...$args) : array

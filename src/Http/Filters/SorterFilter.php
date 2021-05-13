@@ -12,7 +12,9 @@ abstract class SorterFilter extends AbstractFilter
     abstract protected function orders(): array;
 
     protected $withOrders = true;
-    
+
+    protected $defaultOrder = [];
+
     public function handle(Builder $query): Builder
     {
         parent::handle($query);
@@ -105,5 +107,14 @@ abstract class SorterFilter extends AbstractFilter
         $imploded = implode(',', $labels);
 
         $b->orderByRaw("FIELD($column, $imploded) $direction");
+    }
+
+    public function getWithoutOrders($shouldClone)
+    {
+        $filter = $shouldClone ? clone($this) : $this;
+
+        $filter->withOrders = false;
+
+        return $filter;
     }
 }

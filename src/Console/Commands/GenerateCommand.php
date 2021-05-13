@@ -1,6 +1,6 @@
 <?php
 
-namespace Fifth\Generator\Commands;
+namespace Fifth\Generator\Console\Commands;
 
 use Fifth\Generator\Console\Commands\Fragments\HasFields;
 use Fifth\Generator\Console\Commands\ModelCommands\Classes\ModelField;

@@ -28,33 +28,16 @@ abstract class DataPersistRequest extends BaseRequest
         return $filePaths;
     }
 
-    public function getResponseMessage(): array
-    {
-        return ['message' => $this->getMessage()];
-    }
-
-    protected function getMessage(): string
-    {
-        return 'Data successfully persisted';
-    }
-
     protected function getMergingData(): array
     {
         return [];
     }
 
-    protected function getProcessedData(array $exceptItems = [], bool $storeFiles = true): array
+    public function getProcessedData(array $exceptItems = [], bool $storeFiles = true): array
     {
         return array_merge($this->except($exceptItems),
             ($storeFiles) ? $this->storeFilesIfExists() : [],
             $this->getMergingData());
-    }
-
-    public function is_assoc(array $array): bool
-    {
-        $keys = array_keys($array);
-
-        return array_keys($keys) !== $keys;
     }
 }
 

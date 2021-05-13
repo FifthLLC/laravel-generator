@@ -6,12 +6,12 @@ namespace Fifth\Generator\Console\Commands\ModelCommands\Classes\RelationGenerat
 
 class ModelRelation
 {
-    private ?string $type;
-    private ?string $model;
-    private ?string $pivot;
-    private ?string $on_delete;
-    private ?bool $nullable = null;
-    private BaseRelation $relation;
+    private $type;
+    private $model;
+    private $pivot;
+    private $on_delete;
+    private $nullable = null;
+    private $relation;
 
     public static function fromObj($data): self
     {

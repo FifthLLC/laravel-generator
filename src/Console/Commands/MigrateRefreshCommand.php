@@ -1,6 +1,6 @@
 <?php
 
-namespace Fifth\Generator\Commands;
+namespace Fifth\Generator\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\RefreshCommand;
 use Illuminate\Support\Facades\Schema;
